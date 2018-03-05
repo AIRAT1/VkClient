@@ -50,6 +50,10 @@ public class MyFragmentManager {
         }
     }
 
+    public boolean removeCurrentFragment(BaseActivity activity) {
+        return removeFragment(activity, mCurrentFragment);
+    }
+
     public boolean removeFragment(BaseActivity activity, BaseFragment fragment) {
         boolean canRemove = fragment != null && mFragmentStack.size() > EMPTY_FRAGMENT_STACK_SIZE;
         if (canRemove) {
