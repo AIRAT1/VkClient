@@ -1,21 +1,22 @@
-package de.android.ayrathairullin.vkclient;
+package de.android.ayrathairullin.vkclient.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
 
+import de.android.ayrathairullin.vkclient.CurrentUser;
+import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.consts.ApiConstants;
 import de.android.ayrathairullin.vkclient.mvp.presenter.MainPresenter;
 import de.android.ayrathairullin.vkclient.mvp.view.MainView;
 
-public class MainActivity extends MvpAppCompatActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView {
 
     @InjectPresenter
     MainPresenter mPresenter;
