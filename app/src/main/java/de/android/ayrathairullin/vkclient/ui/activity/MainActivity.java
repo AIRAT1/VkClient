@@ -11,10 +11,12 @@ import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
 
 import de.android.ayrathairullin.vkclient.CurrentUser;
+import de.android.ayrathairullin.vkclient.MyApplication;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.consts.ApiConstants;
 import de.android.ayrathairullin.vkclient.mvp.presenter.MainPresenter;
 import de.android.ayrathairullin.vkclient.mvp.view.MainView;
+import de.android.ayrathairullin.vkclient.ui.fragment.NewsFeedFragment;
 
 public class MainActivity extends BaseActivity implements MainView {
 
@@ -24,7 +26,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        MyApplication.getApplicationComponent().inject(this);
         mPresenter.checkAuth();
     }
 
@@ -59,5 +61,6 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void signedIn() {
         Toast.makeText(this, "Current user id: " + CurrentUser.getId(), Toast.LENGTH_LONG).show();
+        setContent(new NewsFeedFragment());
     }
 }
