@@ -1,14 +1,14 @@
 package de.android.ayrathairullin.vkclient.ui.holder;
 
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import de.android.ayrathairullin.vkclient.model.view.BaseViewModel;
 
-public abstract class BaseViewHolder<Item extends BaseViewModel> extends RecyclerView{
-    public BaseViewHolder(Context context) {
-        super(context);
+public abstract class BaseViewHolder<Item extends BaseViewModel> extends RecyclerView.ViewHolder{
+    public BaseViewHolder(View itemView) {
+        super(itemView);
     }
 
     public abstract void bindViewHolder(Item item);
