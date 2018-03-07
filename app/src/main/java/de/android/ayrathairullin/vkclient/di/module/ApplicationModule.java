@@ -3,6 +3,7 @@ package de.android.ayrathairullin.vkclient.di.module;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Typeface;
 
 import javax.inject.Singleton;
 
@@ -21,5 +22,11 @@ public class ApplicationModule {
     @Provides
     public Context provideContext() {
         return mApplication;
+    }
+
+    @Provides
+    @Singleton
+    Typeface provideGoogleTypeface(Context context) {
+        return Typeface.createFromAsset(context.getAssets(), "MaterialIcons-Regular.ttf");
     }
 }

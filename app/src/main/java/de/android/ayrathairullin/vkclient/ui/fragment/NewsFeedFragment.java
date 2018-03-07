@@ -7,10 +7,10 @@ import android.widget.Toast;
 
 import javax.inject.Inject;
 
-import de.android.ayrathairullin.vkclient.CurrentUser;
 import de.android.ayrathairullin.vkclient.MyApplication;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.rest.api.WallApi;
+import de.android.ayrathairullin.vkclient.rest.model.request.WallGetRequestModel;
 import de.android.ayrathairullin.vkclient.rest.model.response.WallGetResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +33,7 @@ public class NewsFeedFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mWallApi.get("17864859", CurrentUser.getAccessTocken(), 1, "5.67").enqueue(new Callback<WallGetResponse>() {
+        mWallApi.get(new WallGetRequestModel(-1090630).toMap()).enqueue(new Callback<WallGetResponse>() { // 17864859
             @Override
             public void onResponse(Call<WallGetResponse> call, Response<WallGetResponse> response) {
                 Toast.makeText(getActivity(), "Likes " + response.body().response.getItems().get(0).getLikes().getCount(), Toast.LENGTH_SHORT).show();
