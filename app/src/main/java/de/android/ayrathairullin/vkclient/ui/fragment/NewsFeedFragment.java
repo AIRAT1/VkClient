@@ -11,8 +11,7 @@ import de.android.ayrathairullin.vkclient.CurrentUser;
 import de.android.ayrathairullin.vkclient.MyApplication;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.rest.api.WallApi;
-import de.android.ayrathairullin.vkclient.rest.model.response.BaseItemResponse;
-import de.android.ayrathairullin.vkclient.rest.model.response.Full;
+import de.android.ayrathairullin.vkclient.rest.model.response.WallGetResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,14 +33,14 @@ public class NewsFeedFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mWallApi.get("17864859", CurrentUser.getAccessTocken(), 1, "5.67").enqueue(new Callback<Full<BaseItemResponse>>() {
+        mWallApi.get("17864859", CurrentUser.getAccessTocken(), 1, "5.67").enqueue(new Callback<WallGetResponse>() {
             @Override
-            public void onResponse(Call<Full<BaseItemResponse>> call, Response<Full<BaseItemResponse>> response) {
-                Toast.makeText(getActivity(), "Count " + response.body().response.getCount(), Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<WallGetResponse> call, Response<WallGetResponse> response) {
+                Toast.makeText(getActivity(), "Likes " + response.body().response.getItems().get(0).getLikes().getCount(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<Full<BaseItemResponse>> call, Throwable t) {
+            public void onFailure(Call<WallGetResponse> call, Throwable t) {
                 t.printStackTrace();
             }
         });
