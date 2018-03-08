@@ -7,9 +7,12 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.android.ayrathairullin.vkclient.model.attachment.ApiAttachment;
+
 public class WallItem {
-    public String senderName;
-    public String senderPhoto;
+    private String attachmentsString;
+    private String senderName;
+    private String senderPhoto;
 
     @SerializedName("id")
     @Expose
@@ -37,12 +40,10 @@ public class WallItem {
     private Integer canPin;
     @SerializedName("attachments")
     @Expose
-    private List<Attachment> attachments = new ArrayList<>();
-
+    private List<ApiAttachment> attachments = new ArrayList<>();
     @SerializedName("copy_history")
     @Expose
     private List<WallItem> copyHistory = new ArrayList<>();
-
     @SerializedName("post_source")
     @Expose
     private PostSource postSource;
@@ -58,6 +59,14 @@ public class WallItem {
     @SerializedName("views")
     @Expose
     private Views views;
+
+    public String getAttachmentsString() {
+        return attachmentsString;
+    }
+
+    public void setAttachmentsString(String attachmentsString) {
+        this.attachmentsString = attachmentsString;
+    }
 
     public Integer getId() {
         return id;
@@ -123,11 +132,11 @@ public class WallItem {
         this.canPin = canPin;
     }
 
-    public List<Attachment> getAttachments() {
+    public List<ApiAttachment> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(List<Attachment> attachments) {
+    public void setAttachments(List<ApiAttachment> attachments) {
         this.attachments = attachments;
     }
 
