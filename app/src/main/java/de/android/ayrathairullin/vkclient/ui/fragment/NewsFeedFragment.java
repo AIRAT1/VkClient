@@ -20,7 +20,7 @@ import de.android.ayrathairullin.vkclient.model.WallItem;
 import de.android.ayrathairullin.vkclient.model.view.NewsFeedItemBodyViewModel;
 import de.android.ayrathairullin.vkclient.rest.api.WallApi;
 import de.android.ayrathairullin.vkclient.rest.model.request.WallGetRequestModel;
-import de.android.ayrathairullin.vkclient.rest.model.response.WallGetResponse;
+import de.android.ayrathairullin.vkclient.rest.model.response.GetWallResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,9 +46,9 @@ public class NewsFeedFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mWallApi.get(new WallGetRequestModel(-1090630).toMap()).enqueue(new Callback<WallGetResponse>() { // 17864859
+        mWallApi.get(new WallGetRequestModel(-1090630).toMap()).enqueue(new Callback<GetWallResponse>() { // 17864859
             @Override
-            public void onResponse(Call<WallGetResponse> call, Response<WallGetResponse> response) {
+            public void onResponse(Call<GetWallResponse> call, Response<GetWallResponse> response) {
                 List<NewsFeedItemBodyViewModel> list = new ArrayList<>();
                 for (WallItem item : response.body().response.getItems()) {
                     list.add(new NewsFeedItemBodyViewModel(item));
@@ -58,7 +58,7 @@ public class NewsFeedFragment extends BaseFragment {
             }
 
             @Override
-            public void onFailure(Call<WallGetResponse> call, Throwable t) {
+            public void onFailure(Call<GetWallResponse> call, Throwable t) {
                 t.printStackTrace();
             }
         });
