@@ -16,8 +16,11 @@ import javax.inject.Inject;
 import de.android.ayrathairullin.vkclient.MyApplication;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.common.BaseAdapter;
+import de.android.ayrathairullin.vkclient.common.utils.VkListHelper;
 import de.android.ayrathairullin.vkclient.model.WallItem;
+import de.android.ayrathairullin.vkclient.model.view.BaseViewModel;
 import de.android.ayrathairullin.vkclient.model.view.NewsFeedItemBodyViewModel;
+import de.android.ayrathairullin.vkclient.model.view.NewsItemHeaderViewModel;
 import de.android.ayrathairullin.vkclient.rest.api.WallApi;
 import de.android.ayrathairullin.vkclient.rest.model.request.WallGetRequestModel;
 import de.android.ayrathairullin.vkclient.rest.model.response.GetWallResponse;
@@ -31,7 +34,7 @@ public class NewsFeedFragment extends BaseFragment {
 
     RecyclerView mRecyclerView;
 
-    BaseAdapter mBaseAdapter;
+    BaseAdapter mAdapter;
 
     public NewsFeedFragment() {
         // Required empty public constructor
@@ -49,11 +52,13 @@ public class NewsFeedFragment extends BaseFragment {
         mWallApi.get(new WallGetRequestModel(-1090630).toMap()).enqueue(new Callback<GetWallResponse>() { // 17864859
             @Override
             public void onResponse(Call<GetWallResponse> call, Response<GetWallResponse> response) {
-                List<NewsFeedItemBodyViewModel> list = new ArrayList<>();
-                for (WallItem item : response.body().response.getItems()) {
+                List<WallItem> wallItems = VkListHelper.getWallList(response.body().response);
+                List<BaseViewModel> list = new ArrayList<>();
+                for (WallItem item : wallItems) {
+                    list.add(new NewsItemHeaderViewModel(item));
                     list.add(new NewsFeedItemBodyViewModel(item));
                 }
-                mBaseAdapter.addItems(list);
+                mAdapter.addItems(list);
                 Toast.makeText(getActivity(), "Likes " + response.body().response.getItems().get(0).getLikes().getCount(), Toast.LENGTH_SHORT).show();
             }
 
@@ -87,7 +92,7 @@ public class NewsFeedFragment extends BaseFragment {
     }
 
     private void setUpAdapter(RecyclerView recyclerView) {
-        mBaseAdapter = new BaseAdapter();
-        recyclerView.setAdapter(mBaseAdapter);
+        mAdapter = new BaseAdapter();
+        recyclerView.setAdapter(mAdapter);
     }
 }
