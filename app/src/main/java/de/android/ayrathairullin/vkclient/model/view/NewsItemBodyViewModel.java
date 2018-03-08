@@ -7,13 +7,13 @@ import de.android.ayrathairullin.vkclient.model.WallItem;
 import de.android.ayrathairullin.vkclient.ui.holder.BaseViewHolder;
 import de.android.ayrathairullin.vkclient.ui.holder.NewsItemBodyHolder;
 
-public class NewsFeedItemBodyViewModel extends BaseViewModel {
+public class NewsItemBodyViewModel extends BaseViewModel {
     private int mId;
     private String mText;
     private String mAttachmentString;
     private boolean mIsRepost;
 
-    public NewsFeedItemBodyViewModel(WallItem wallItem) {
+    public NewsItemBodyViewModel(WallItem wallItem) {
         this.mId = wallItem.getId();
         this.mIsRepost = wallItem.haveSharedRepost();
         if (mIsRepost) {

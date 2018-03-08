@@ -9,9 +9,9 @@ import javax.inject.Inject;
 
 import de.android.ayrathairullin.vkclient.MyApplication;
 import de.android.ayrathairullin.vkclient.R;
-import de.android.ayrathairullin.vkclient.model.view.NewsFeedItemBodyViewModel;
+import de.android.ayrathairullin.vkclient.model.view.NewsItemBodyViewModel;
 
-public class NewsItemBodyHolder extends BaseViewHolder<NewsFeedItemBodyViewModel>{
+public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBodyViewModel>{
     private TextView tvText;
     private TextView tvAttachments;
     @Inject
@@ -29,7 +29,7 @@ public class NewsItemBodyHolder extends BaseViewHolder<NewsFeedItemBodyViewModel
     }
 
     @Override
-    public void bindViewHolder(NewsFeedItemBodyViewModel item) {
+    public void bindViewHolder(NewsItemBodyViewModel item) {
         tvText.setText(item.getText());
         tvAttachments.setText(item.getmAttachmentString());
     }

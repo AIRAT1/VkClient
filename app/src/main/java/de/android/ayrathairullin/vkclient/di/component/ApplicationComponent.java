@@ -11,6 +11,7 @@ import de.android.ayrathairullin.vkclient.ui.activity.BaseActivity;
 import de.android.ayrathairullin.vkclient.ui.activity.MainActivity;
 import de.android.ayrathairullin.vkclient.ui.fragment.NewsFeedFragment;
 import de.android.ayrathairullin.vkclient.ui.holder.NewsItemBodyHolder;
+import de.android.ayrathairullin.vkclient.ui.holder.NewsItemFooterHolder;
 
 @Singleton
 @Component(modules = {ApplicationModule.class, ManagerModule.class, RestModule.class})
@@ -22,4 +23,5 @@ public interface ApplicationComponent {
     void inject(NewsFeedFragment fragment);
     // holders
     void inject(NewsItemBodyHolder holder);
+    void inject(NewsItemFooterHolder holder);
 }
