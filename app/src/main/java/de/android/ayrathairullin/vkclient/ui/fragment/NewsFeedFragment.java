@@ -3,7 +3,6 @@ package de.android.ayrathairullin.vkclient.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +20,13 @@ import de.android.ayrathairullin.vkclient.model.view.NewsItemHeaderViewModel;
 import de.android.ayrathairullin.vkclient.rest.api.WallApi;
 import de.android.ayrathairullin.vkclient.rest.model.request.WallGetRequestModel;
 import de.android.ayrathairullin.vkclient.rest.model.response.GetWallResponse;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class NewsFeedFragment extends BaseFeedFragment {
     @Inject
@@ -44,26 +47,31 @@ public class NewsFeedFragment extends BaseFeedFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mWallApi.get(new WallGetRequestModel(-1090630).toMap()).enqueue(new Callback<GetWallResponse>() {
+        mWallApi.get(new WallGetRequestModel(-1090630).toMap()).flatMap(new Function<GetWallResponse, ObservableSource<WallItem>>() {
             @Override
-            public void onResponse(Call<GetWallResponse> call, Response<GetWallResponse> response) {
-                List<WallItem> wallItems = VkListHelper.getWallList(response.body().response);
-                List<BaseViewModel> list = new ArrayList<>();
-
-                for (WallItem item : wallItems) {
-                    list.add(new NewsItemHeaderViewModel(item));
-                    list.add(new NewsItemBodyViewModel(item));
-                    list.add(new NewsItemFooterViewModel(item));
-                }
-                mAdapter.addItems(list);
-                Toast.makeText(getActivity(), "Likes: " + response.body().response.getItems().get(0).getLikes().getCount(), Toast.LENGTH_LONG).show();
+            public ObservableSource<WallItem> apply(@NonNull GetWallResponse getWallResponse) throws Exception {
+                return Observable.fromIterable(VkListHelper.getWallList(getWallResponse.response));
             }
-
-            @Override
-            public void onFailure(Call<GetWallResponse> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
+        })
+                .flatMap(new Function<WallItem, ObservableSource<BaseViewModel>>() {
+                    @Override
+                    public ObservableSource<BaseViewModel> apply(@NonNull WallItem wallItem) throws Exception {
+                        List<BaseViewModel> baseItems = new ArrayList<>();
+                        baseItems.add(new NewsItemHeaderViewModel(wallItem));
+                        baseItems.add(new NewsItemBodyViewModel(wallItem));
+                        baseItems.add(new NewsItemFooterViewModel(wallItem));
+                        return Observable.fromIterable(baseItems);
+                    }
+                })
+                .toList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<BaseViewModel>>() {
+                    @Override
+                    public void accept(List<BaseViewModel> objects) throws Exception {
+                        mAdapter.addItems(objects);
+                    }
+                });
     }
 
     @Override
