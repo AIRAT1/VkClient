@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 
+import de.android.ayrathairullin.vkclient.ui.activity.BaseActivity;
+
 public abstract class BaseFragment extends MvpAppCompatFragment{
     @LayoutRes
     protected abstract int getMainContentLayout();
@@ -29,4 +31,8 @@ public abstract class BaseFragment extends MvpAppCompatFragment{
 
     @StringRes
     public abstract int onCreateToolbarTitle();
+
+    public BaseActivity getBaseActivity() {
+        return (BaseActivity)getActivity();
+    }
 }
