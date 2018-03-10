@@ -8,22 +8,25 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.model.view.NewsItemHeaderViewModel;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewsItemHeaderHolder extends BaseViewHolder<NewsItemHeaderViewModel>{
-    private CircleImageView civProfileImage;
-    private TextView tvName;
-    private ImageView ivRepostedIcon;
-    private TextView tvRepostedProfileName;
+    @BindView(R.id.civ_profile_image)
+    public CircleImageView civProfileImage;
+    @BindView(R.id.tv_profile_name)
+    public TextView tvName;
+    @BindView(R.id.iv_reposted_icon)
+    public ImageView ivRepostedIcon;
+    @BindView(R.id.tv_reposted_profile_name)
+    public TextView tvRepostedProfileName;
 
     public NewsItemHeaderHolder(View itemView) {
         super(itemView);
-        civProfileImage = itemView.findViewById(R.id.civ_profile_image);
-        tvName = itemView.findViewById(R.id.tv_profile_name);
-        ivRepostedIcon = itemView.findViewById(R.id.iv_reposted_icon);
-        tvRepostedProfileName = itemView.findViewById(R.id.tv_reposted_profile_name);
+        ButterKnife.bind(this, itemView);
     }
 
     @Override

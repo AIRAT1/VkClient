@@ -7,21 +7,24 @@ import android.widget.TextView;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.android.ayrathairullin.vkclient.MyApplication;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.model.view.NewsItemBodyViewModel;
 
 public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBodyViewModel>{
-    private TextView tvText;
-    private TextView tvAttachments;
+    @BindView(R.id.tv_text)
+    public TextView tvText;
+    @BindView(R.id.tv_attachments)
+    public TextView tvAttachments;
     @Inject
     protected Typeface mFontGoogle;
 
     public NewsItemBodyHolder(View itemView) {
         super(itemView);
+        ButterKnife.bind(this, itemView);
         MyApplication.getApplicationComponent().inject(this);
-        this.tvText = itemView.findViewById(R.id.tv_text);
-        this.tvAttachments = itemView.findViewById(R.id.tv_attachments);
 
         if (tvAttachments != null) {
             tvAttachments.setTypeface(mFontGoogle);

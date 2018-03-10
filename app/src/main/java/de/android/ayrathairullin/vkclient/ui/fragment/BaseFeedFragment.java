@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.common.BaseAdapter;
 import de.android.ayrathairullin.vkclient.common.manager.MyLinearLayoutManager;
@@ -20,8 +22,10 @@ import de.android.ayrathairullin.vkclient.mvp.presenter.BaseFeedPresenter;
 import de.android.ayrathairullin.vkclient.mvp.view.BaseFeedView;
 
 public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedView{
+    @BindView(R.id.rv_list)
     RecyclerView mRecyclerView;
     BaseAdapter mAdapter;
+    @BindView(R.id.swipe_refresh)
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected ProgressBar mProgressBar;
     protected BaseFeedPresenter mBaseFeedPresenter;
@@ -29,7 +33,7 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        ButterKnife.bind(this, view);
         setUpRecyclerView(view);
         setUpAdapter(mRecyclerView);
         setUpSwipeToRefreshLayout(view);
@@ -38,7 +42,6 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
     }
 
     private void setUpRecyclerView(View rootView) {
-        mRecyclerView = rootView.findViewById(R.id.rv_list);
         MyLinearLayoutManager mLinearLayoutManager = new MyLinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -68,7 +71,6 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
     }
 
     private void setUpSwipeToRefreshLayout(View rootView) {
-        mSwipeRefreshLayout = rootView.findViewById(R.id.swipe_refresh);
         mSwipeRefreshLayout.setOnRefreshListener(() -> onCreateFeedPresenter().loadRefresh());
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         mProgressBar = getBaseActivity().getProgressBar();
