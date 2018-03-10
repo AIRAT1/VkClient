@@ -4,6 +4,7 @@ package de.android.ayrathairullin.vkclient.di.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import de.android.ayrathairullin.vkclient.common.manager.NetworkManager;
 import de.android.ayrathairullin.vkclient.di.module.ApplicationModule;
 import de.android.ayrathairullin.vkclient.di.module.ManagerModule;
 import de.android.ayrathairullin.vkclient.di.module.RestModule;
@@ -27,4 +28,6 @@ public interface ApplicationComponent {
     void inject(NewsItemFooterHolder holder);
     // presenters
     void inject(NewsFeedPresenter presenter);
+    // managers
+    void inject(NetworkManager manager);
 }

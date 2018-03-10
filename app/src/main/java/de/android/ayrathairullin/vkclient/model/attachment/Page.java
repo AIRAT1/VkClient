@@ -3,8 +3,10 @@ package de.android.ayrathairullin.vkclient.model.attachment;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.RealmObject;
 
-public class Page implements Attachment {
+
+public class Page extends RealmObject implements Attachment {
 
     @SerializedName("id")
     @Expose
