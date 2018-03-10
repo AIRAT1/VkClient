@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.vk.sdk.VKAccessToken;
@@ -25,6 +27,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @InjectPresenter
     MainPresenter mPresenter;
     private Drawer mDrawer;
+    private AccountHeader mAccountHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +37,15 @@ public class MainActivity extends BaseActivity implements MainView {
     }
 
     public void setUpDrawer() {
+        mAccountHeader = new AccountHeaderBuilder()
+                .withActivity(this)
+                .build();
         mDrawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withTranslucentStatusBar(true)
                 .withActionBarDrawerToggle(true)
+                .withAccountHeader(mAccountHeader)
                 .build();
     }
 
@@ -67,12 +74,13 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void startSignIn() {
-        VKSdk.login(this, ApiConstants.DEFAULT_LOGINSCOPE);
+        VKSdk.login(this, ApiConstants.DEFAULT_LOGIN_SCOPE);
     }
 
     @Override
     public void signedIn() {
         Toast.makeText(this, "Current user id: " + CurrentUser.getId(), Toast.LENGTH_LONG).show();
         setContent(new NewsFeedFragment());
+        setUpDrawer();
     }
 }
