@@ -29,6 +29,7 @@ import de.android.ayrathairullin.vkclient.consts.ApiConstants;
 import de.android.ayrathairullin.vkclient.model.Profile;
 import de.android.ayrathairullin.vkclient.mvp.presenter.MainPresenter;
 import de.android.ayrathairullin.vkclient.mvp.view.MainView;
+import de.android.ayrathairullin.vkclient.ui.fragment.BaseFragment;
 import de.android.ayrathairullin.vkclient.ui.fragment.NewsFeedFragment;
 
 public class MainActivity extends BaseActivity implements MainView {
@@ -86,6 +87,10 @@ public class MainActivity extends BaseActivity implements MainView {
                 .addDrawerItems(item1, item2, item3,
                         new SectionDrawerItem().withName("Group"),
                         item4, item5, item6, item7)
+                .withOnDrawerItemClickListener((view, position, drawerItem) -> {
+                    mPresenter.drawerItemClick((int) drawerItem.getIdentifier());
+                    return false;
+                })
                 .build();
     }
 
@@ -131,12 +136,17 @@ public class MainActivity extends BaseActivity implements MainView {
                 .withEmail(VKAccessToken.currentToken().email)
                 .withIcon(profile.getDisplayProfilePhoto()));
         profileDrawerItems.add(new ProfileDrawerItem().withName("Logout")
-        .withOnDrawerItemClickListener((view, position, drawerItem) -> {
-            mAccountHeader.removeProfile(0);
-            mAccountHeader.removeProfile(0);
-            VKSdk.logout();
-            return false;
-        }));
+                .withOnDrawerItemClickListener((view, position, drawerItem) -> {
+                    mAccountHeader.removeProfile(0);
+                    mAccountHeader.removeProfile(0);
+                    VKSdk.logout();
+                    return false;
+                }));
         mAccountHeader.setProfiles(profileDrawerItems);
+    }
+
+    @Override
+    public void showFragmentFromDrawer(BaseFragment baseFragment) {
+        setContent(baseFragment);
     }
 }

@@ -10,11 +10,16 @@ import javax.inject.Inject;
 
 import de.android.ayrathairullin.vkclient.CurrentUser;
 import de.android.ayrathairullin.vkclient.MyApplication;
+import de.android.ayrathairullin.vkclient.common.manager.MyFragmentManager;
 import de.android.ayrathairullin.vkclient.common.manager.NetworkManager;
 import de.android.ayrathairullin.vkclient.model.Profile;
 import de.android.ayrathairullin.vkclient.mvp.view.MainView;
 import de.android.ayrathairullin.vkclient.rest.api.UsersApi;
 import de.android.ayrathairullin.vkclient.rest.model.request.UsersGetRequestModel;
+import de.android.ayrathairullin.vkclient.ui.fragment.BaseFragment;
+import de.android.ayrathairullin.vkclient.ui.fragment.MembersFragment;
+import de.android.ayrathairullin.vkclient.ui.fragment.MyPostsFragment;
+import de.android.ayrathairullin.vkclient.ui.fragment.NewsFeedFragment;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -23,6 +28,8 @@ import io.realm.RealmObject;
 
 @InjectViewState
 public class MainPresenter extends MvpPresenter<MainView> {
+    @Inject
+    MyFragmentManager myFragmentManager;
     @Inject
     UsersApi mUserApi;
     @Inject
@@ -83,5 +90,23 @@ public class MainPresenter extends MvpPresenter<MainView> {
                 }, error -> {
                     error.printStackTrace();
                 });
+    }
+
+    public void drawerItemClick(int id) {
+        BaseFragment fragment = null;
+        switch (id) {
+            case 1:
+                fragment = new NewsFeedFragment();
+                break;
+            case 2:
+                fragment = new MyPostsFragment();
+                break;
+            case 4:
+                fragment = new MembersFragment();
+                break;
+        }
+        if (fragment != null && !myFragmentManager.isAlreadyContains(fragment)) {
+            getViewState().showFragmentFromDrawer(fragment);
+        }
     }
 }
