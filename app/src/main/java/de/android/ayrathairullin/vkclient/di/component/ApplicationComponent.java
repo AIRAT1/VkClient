@@ -8,6 +8,7 @@ import de.android.ayrathairullin.vkclient.common.manager.NetworkManager;
 import de.android.ayrathairullin.vkclient.di.module.ApplicationModule;
 import de.android.ayrathairullin.vkclient.di.module.ManagerModule;
 import de.android.ayrathairullin.vkclient.di.module.RestModule;
+import de.android.ayrathairullin.vkclient.mvp.presenter.MainPresenter;
 import de.android.ayrathairullin.vkclient.mvp.presenter.NewsFeedPresenter;
 import de.android.ayrathairullin.vkclient.ui.activity.BaseActivity;
 import de.android.ayrathairullin.vkclient.ui.activity.MainActivity;
@@ -28,6 +29,7 @@ public interface ApplicationComponent {
     void inject(NewsItemFooterHolder holder);
     // presenters
     void inject(NewsFeedPresenter presenter);
+    void inject(MainPresenter presenter);
     // managers
     void inject(NetworkManager manager);
 }
