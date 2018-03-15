@@ -6,6 +6,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import de.android.ayrathairullin.vkclient.rest.RestClient;
+import de.android.ayrathairullin.vkclient.rest.api.BoardApi;
 import de.android.ayrathairullin.vkclient.rest.api.GroupsApi;
 import de.android.ayrathairullin.vkclient.rest.api.UsersApi;
 import de.android.ayrathairullin.vkclient.rest.api.WallApi;
@@ -40,5 +41,11 @@ public class RestModule {
     @Singleton
     public GroupsApi provideGroupsApi() {
         return mRestClient.createService(GroupsApi.class);
+    }
+
+    @Provides
+    @Singleton
+    public BoardApi provideBoardApi() {
+        return mRestClient.createService(BoardApi.class);
     }
 }
