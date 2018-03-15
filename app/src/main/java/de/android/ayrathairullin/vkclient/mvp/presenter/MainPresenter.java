@@ -17,6 +17,7 @@ import de.android.ayrathairullin.vkclient.mvp.view.MainView;
 import de.android.ayrathairullin.vkclient.rest.api.UsersApi;
 import de.android.ayrathairullin.vkclient.rest.model.request.UsersGetRequestModel;
 import de.android.ayrathairullin.vkclient.ui.fragment.BaseFragment;
+import de.android.ayrathairullin.vkclient.ui.fragment.BoardFragment;
 import de.android.ayrathairullin.vkclient.ui.fragment.MembersFragment;
 import de.android.ayrathairullin.vkclient.ui.fragment.MyPostsFragment;
 import de.android.ayrathairullin.vkclient.ui.fragment.NewsFeedFragment;
@@ -103,6 +104,9 @@ public class MainPresenter extends MvpPresenter<MainView> {
                 break;
             case 4:
                 fragment = new MembersFragment();
+                break;
+            case 5:
+                fragment = new BoardFragment();
                 break;
         }
         if (fragment != null && !myFragmentManager.isAlreadyContains(fragment)) {

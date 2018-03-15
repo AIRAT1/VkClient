@@ -12,5 +12,5 @@ import retrofit2.http.QueryMap;
 
 public interface BoardApi {
     @GET(ApiMethods.BOARD_GET_TOPICS)
-    Observable<Full<BaseItemResponse<Topic>>> getTopios(@QueryMap Map<String, String> map);
+    Observable<Full<BaseItemResponse<Topic>>> getTopics(@QueryMap Map<String, String> map);
 }
