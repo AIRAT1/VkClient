@@ -9,6 +9,7 @@ import de.android.ayrathairullin.vkclient.di.module.ApplicationModule;
 import de.android.ayrathairullin.vkclient.di.module.ManagerModule;
 import de.android.ayrathairullin.vkclient.di.module.RestModule;
 import de.android.ayrathairullin.vkclient.mvp.presenter.BoardPresenter;
+import de.android.ayrathairullin.vkclient.mvp.presenter.InfoPresenter;
 import de.android.ayrathairullin.vkclient.mvp.presenter.MainPresenter;
 import de.android.ayrathairullin.vkclient.mvp.presenter.MembersPresenter;
 import de.android.ayrathairullin.vkclient.mvp.presenter.NewsFeedPresenter;
@@ -34,6 +35,7 @@ public interface ApplicationComponent {
     void inject(MainPresenter presenter);
     void inject(MembersPresenter presenter);
     void inject(BoardPresenter presenter);
+    void inject(InfoPresenter presenter);
     // managers
     void inject(NetworkManager manager);
 }
