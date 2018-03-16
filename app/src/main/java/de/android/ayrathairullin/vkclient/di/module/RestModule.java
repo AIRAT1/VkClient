@@ -9,6 +9,7 @@ import de.android.ayrathairullin.vkclient.rest.RestClient;
 import de.android.ayrathairullin.vkclient.rest.api.BoardApi;
 import de.android.ayrathairullin.vkclient.rest.api.GroupsApi;
 import de.android.ayrathairullin.vkclient.rest.api.UsersApi;
+import de.android.ayrathairullin.vkclient.rest.api.VideoApi;
 import de.android.ayrathairullin.vkclient.rest.api.WallApi;
 
 @Module
@@ -19,14 +20,20 @@ public class RestModule {
         mRestClient = new RestClient();
     }
 
-    @Singleton
     @Provides
+    @Singleton
+    public VideoApi provideVideoApi() {
+        return mRestClient.createService(VideoApi.class);
+    }
+
+    @Provides
+    @Singleton
     public RestClient provideRestClient() {
         return mRestClient;
     }
 
-    @Singleton
     @Provides
+    @Singleton
     public WallApi provideWallApi() {
         return mRestClient.createService(WallApi.class);
     }

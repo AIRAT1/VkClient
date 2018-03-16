@@ -1,9 +1,10 @@
-package de.android.ayrathairullin.vkclient.model.attachment;
+package de.android.ayrathairullin.vkclient.model.attachment.doc;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.vk.sdk.api.model.VKAttachments;
 
+import de.android.ayrathairullin.vkclient.model.attachment.Attachment;
 import io.realm.RealmObject;
 
 
@@ -35,6 +36,13 @@ public class Doc extends RealmObject implements Attachment {
     @SerializedName("access_key")
     @Expose
     private String accessKey;
+    @SerializedName("preview")
+    @Expose
+    private Preview preview;
+
+    public Preview getPreview() {
+        return preview;
+    }
 
     public int getId() {
         return id;
