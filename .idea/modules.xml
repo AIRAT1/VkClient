@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/VkClient.iml" filepath="$PROJECT_DIR$/VkClient.iml" />
+      <module fileurl="file://C:\tmp\AndroidStudioProjects\VkClient\VkClient.iml" filepath="C:\tmp\AndroidStudioProjects\VkClient\VkClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\tmp\AndroidStudioProjects\VkClient\app\app.iml" filepath="C:\tmp\AndroidStudioProjects\VkClient\app\app.iml" />
     </modules>
   </component>
 </project>
