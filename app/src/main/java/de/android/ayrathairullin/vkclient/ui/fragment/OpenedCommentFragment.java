@@ -6,33 +6,25 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+
+import butterknife.ButterKnife;
 import de.android.ayrathairullin.vkclient.MyApplication;
 import de.android.ayrathairullin.vkclient.R;
-import de.android.ayrathairullin.vkclient.model.view.NewsItemFooterViewModel;
 import de.android.ayrathairullin.vkclient.mvp.presenter.BaseFeedPresenter;
-import de.android.ayrathairullin.vkclient.mvp.presenter.OpenedPostPresenter;
-import de.android.ayrathairullin.vkclient.mvp.view.OpenedPostView;
-import de.android.ayrathairullin.vkclient.ui.view.holder.NewsItemFooterHolder;
+import de.android.ayrathairullin.vkclient.mvp.presenter.OpenedCommentPresenter;
+//import io.reactivex.annotations.Nullable;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-public class OpenedPostFragment extends BaseFeedFragment implements OpenedPostView {
-
-
-    @BindView(R.id.rv_footer)
-    View mFooter;
+public class OpenedCommentFragment extends BaseFeedFragment {
 
     @InjectPresenter
-    OpenedPostPresenter mPresenter;
+    OpenedCommentPresenter mPresenter;
 
     int id;
 
-    public static OpenedPostFragment newInstance(int id) {
-
+    public static OpenedCommentFragment newInstance(int id) {
         Bundle args = new Bundle();
         args.putInt("id", id);
-        OpenedPostFragment fragment = new OpenedPostFragment();
+        OpenedCommentFragment fragment = new OpenedCommentFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,21 +53,16 @@ public class OpenedPostFragment extends BaseFeedFragment implements OpenedPostVi
     }
 
     @Override
-    public int onCreateToolbarTitle() {
-        return R.string.screen_name_opened_post;
-    }
-
-
-    @Override
     protected BaseFeedPresenter onCreateFeedPresenter() {
         mPresenter.setId(id);
         return mPresenter;
     }
 
     @Override
-    public void setFooter(NewsItemFooterViewModel viewModel) {
-        mFooter.setVisibility(View.VISIBLE);
-        new NewsItemFooterHolder(mFooter).bindViewHolder(viewModel);
+    public int onCreateToolbarTitle() {
+        return R.string.screen_name_opened_comment;
     }
+
+
 
 }

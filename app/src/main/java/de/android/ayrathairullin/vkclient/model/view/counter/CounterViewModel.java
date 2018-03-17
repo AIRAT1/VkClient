@@ -4,6 +4,7 @@ package de.android.ayrathairullin.vkclient.model.view.counter;
 import de.android.ayrathairullin.vkclient.R;
 
 public class CounterViewModel {
+
     protected int mCount;
     protected int mIconColor = R.color.colorIconDis;
     protected int mTextColor = R.color.colorIconDis;
@@ -12,19 +13,19 @@ public class CounterViewModel {
         this.mCount = count;
         if (mCount > 0) {
             setDefaultColor();
-        }else {
+        } else {
             setDisabledColor();
         }
-    }
-
-    private void setDefaultColor() {
-        mIconColor = R.color.colorIcon;
-        mTextColor = R.color.colorIcon;
     }
 
     private void setDisabledColor() {
         mIconColor = R.color.colorIconDis;
         mTextColor = R.color.colorIconDis;
+    }
+
+    private void setDefaultColor() {
+        mIconColor = R.color.colorIcon;
+        mTextColor = R.color.colorIcon;
     }
 
     protected void setAccentColor() {

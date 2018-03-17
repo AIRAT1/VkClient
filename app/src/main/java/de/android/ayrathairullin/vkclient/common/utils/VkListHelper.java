@@ -25,25 +25,29 @@ import de.android.ayrathairullin.vkclient.rest.model.response.ItemWithSendersRes
 public class VkListHelper {
     public static List<WallItem> getWallList(ItemWithSendersResponse<WallItem> response) {
         List<WallItem> wallItems = response.items;
+
         for (WallItem wallItem : wallItems) {
             Owner sender = response.getSender(wallItem.getFromId());
             wallItem.setSenderName(sender.getFullName());
             wallItem.setSenderPhoto(sender.getPhoto());
-            wallItem.setAttachmentsString(Utils.convertAttachmentsToFontIcons(wallItem.getAttachments()));
+
+            wallItem.setAttachmentsString(Utils
+                    .convertAttachmentsToFontIcons(wallItem.getAttachments()));
 
             if (wallItem.haveSharedRepost()) {
                 Owner repostSender = response.getSender(wallItem.getSharedRepost().getFromId());
                 wallItem.getSharedRepost().setSenderName(repostSender.getFullName());
                 wallItem.getSharedRepost().setSenderPhoto(repostSender.getPhoto());
-                wallItem.getSharedRepost().setAttachmentsString(Utils.convertAttachmentsToFontIcons(
-                        wallItem.getSharedRepost().getAttachments()
-                ));
+
+                wallItem.getSharedRepost().setAttachmentsString(Utils
+                        .convertAttachmentsToFontIcons(wallItem.getSharedRepost().getAttachments()
+                        ));
             }
         }
         return wallItems;
     }
 
-    public static List<BaseViewModel> getAttachmentVhItems(List<ApiAttachment> attachments) {
+    public static List<BaseViewModel> getAttachmentVkItems(List<ApiAttachment> attachments) {
 
         List<BaseViewModel> attachmentVhItems = new ArrayList<>();
         for (ApiAttachment attachment : attachments) {
@@ -107,4 +111,5 @@ public class VkListHelper {
         }
         return commentItems;
     }
+
 }

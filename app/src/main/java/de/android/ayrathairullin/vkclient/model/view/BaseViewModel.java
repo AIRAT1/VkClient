@@ -10,15 +10,18 @@ import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.ui.view.holder.BaseViewHolder;
 
 public abstract class BaseViewModel {
+
     public abstract LayoutTypes getType();
 
     public BaseViewHolder createViewHolder(ViewGroup parent) {
-        return onCreateViewHolder(LayoutInflater.from(parent.getContext()).inflate(getType().getValue(), parent, false));
+        return onCreateViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(getType().getValue(), parent, false));
     }
 
     protected abstract BaseViewHolder onCreateViewHolder(View view);
 
-    public enum  LayoutTypes {
+
+    public enum LayoutTypes {
         NewsFeedItemHeader(R.layout.item_news_header),
         NewsFeedItemBody(R.layout.item_news_body),
         NewsFeedItemFooter(R.layout.item_news_footer),
@@ -27,7 +30,6 @@ public abstract class BaseViewModel {
         InfoStatus(R.layout.item_info_status),
         InfoContacts(R.layout.item_info_contacts),
         InfoLinks(R.layout.item_info_links),
-
         AttachmentAudio(R.layout.item_attachment_audio),
         AttachmentDoc(R.layout.item_attachment_doc),
         AttachmentDocImage(R.layout.item_attachment_doc_image),
@@ -38,7 +40,12 @@ public abstract class BaseViewModel {
         AttachmentVideo(R.layout.item_attachment_video),
 
         OpenedPostHeader(R.layout.item_opened_post_header),
-        OpenedPostRepostHeader(R.layout.item_opened_post_repost_header);
+        OpenedPostRepostHeader(R.layout.item_opened_post_repost_header),
+
+        CommentHeader(R.layout.item_comment_header),
+        CommentBody(R.layout.item_comment_body),
+        CommentFooter(R.layout.item_comment_footer);
+
 
         private final int id;
 

@@ -38,11 +38,14 @@ public class UiHelper {
         if (s.length() != 0) {
             textView.setVisibility(View.VISIBLE);
             color = android.R.color.primary_text_light;
+
             s1 = s;
-        }else {
+
+        } else {
             s1 = "Поделился";
             color = R.color.colorIcon;
         }
+
         textView.setText(s1);
         textView.setTextColor(res.getColor(color));
     }

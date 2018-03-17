@@ -10,6 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.common.utils.UiHelper;
+import de.android.ayrathairullin.vkclient.model.CommentItem;
 import de.android.ayrathairullin.vkclient.model.WallItem;
 import de.android.ayrathairullin.vkclient.ui.view.holder.BaseViewHolder;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -31,6 +32,15 @@ public class OpenedPostHeaderViewModel extends BaseViewModel {
         this.mProfilePhoto = wallItem.getSenderPhoto();
 
         this.mText = wallItem.getText();
+    }
+
+    public OpenedPostHeaderViewModel(CommentItem commentItem) {
+        this.mId = commentItem.getId();
+
+        this.mProfileName = commentItem.getSenderName();
+        this.mProfilePhoto = commentItem.getSenderPhoto();
+
+        this.mText = commentItem.getDisplayText();
     }
 
 

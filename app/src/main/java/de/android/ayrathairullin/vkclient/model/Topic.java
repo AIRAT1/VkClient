@@ -9,6 +9,7 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Topic extends RealmObject implements Identifiable{
+
     @PrimaryKey
     @SerializedName("id")
     @Expose
@@ -20,9 +21,9 @@ public class Topic extends RealmObject implements Identifiable{
 
     @SerializedName("comments")
     @Expose
-    public String comments;
+    public int comments;
 
-    public int groupId;
+    public int groupid;
 
     @Override
     public int getId() {
@@ -33,12 +34,12 @@ public class Topic extends RealmObject implements Identifiable{
         return title;
     }
 
-    public String getComments() {
+    public int getComments() {
         return comments;
     }
 
-    public int getGroupId() {
-        return groupId;
+    public int getGroupid() {
+        return groupid;
     }
 
     public void setId(int id) {
@@ -49,11 +50,11 @@ public class Topic extends RealmObject implements Identifiable{
         this.title = title;
     }
 
-    public void setComments(String comments) {
+    public void setComments(int comments) {
         this.comments = comments;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
+    public void setGroupid(int groupid) {
+        this.groupid = groupid;
     }
 }

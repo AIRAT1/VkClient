@@ -4,31 +4,39 @@ package de.android.ayrathairullin.vkclient.model.view;
 import android.view.View;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.android.ayrathairullin.vkclient.MyApplication;
 import de.android.ayrathairullin.vkclient.R;
+import de.android.ayrathairullin.vkclient.common.manager.MyFragmentManager;
+import de.android.ayrathairullin.vkclient.model.Place;
 import de.android.ayrathairullin.vkclient.model.Topic;
+import de.android.ayrathairullin.vkclient.ui.activity.BaseActivity;
+import de.android.ayrathairullin.vkclient.ui.fragment.TopicCommentsFragment;
 import de.android.ayrathairullin.vkclient.ui.view.holder.BaseViewHolder;
 
-public class TopicViewModel extends BaseViewModel{
-    private int mId;
-    private int mGroupId;
+public class TopicViewModel extends  BaseViewModel{
+
+    private int mid;
+    private int mGroupid;
     private String mTitle;
     private String mCommentsCount;
 
     public TopicViewModel() {
     }
 
-    public TopicViewModel(Topic topic) {
-        this.mId = topic.getId();
-        this.mGroupId = topic.getGroupId();
-        this.mTitle = topic.getTitle();
-        this.mCommentsCount = topic.getComments() + " сообщений";
-    }
-
     @Override
     public LayoutTypes getType() {
         return LayoutTypes.Topic;
+    }
+
+    public TopicViewModel(Topic topic) {
+        this.mid = topic.getId();
+        this.mGroupid = topic.getGroupid();
+        this.mTitle = topic.getTitle();
+        this.mCommentsCount = topic.getComments() + " сообщений";
     }
 
     @Override
@@ -37,31 +45,31 @@ public class TopicViewModel extends BaseViewModel{
     }
 
     public int getId() {
-        return mId;
+        return mid;
     }
 
-    public void setId(int mId) {
-        this.mId = mId;
-    }
-
-    public int getGroupId() {
-        return mGroupId;
-    }
-
-    public void setGroupId(int mGroupId) {
-        this.mGroupId = mGroupId;
+    public int getGroupid() {
+        return mGroupid;
     }
 
     public String getTitle() {
         return mTitle;
     }
 
-    public void setTitle(String mTitle) {
-        this.mTitle = mTitle;
-    }
-
     public String getCommentsCount() {
         return mCommentsCount;
+    }
+
+    public void setMid(int mid) {
+        this.mid = mid;
+    }
+
+    public void setGroupid(int mGroupid) {
+        this.mGroupid = mGroupid;
+    }
+
+    public void setTitle(String mTitle) {
+        this.mTitle = mTitle;
     }
 
     public void setCommentsCount(String mCommentsCount) {
@@ -69,14 +77,19 @@ public class TopicViewModel extends BaseViewModel{
     }
 
     public static class TopicViewHolder extends BaseViewHolder<TopicViewModel> {
+
         @BindView(R.id.tv_title)
         public TextView tvTitle;
 
         @BindView(R.id.tv_comments_count)
         public TextView tvCommentsCount;
 
+        @Inject
+        MyFragmentManager mFragmentManager;
+
         public TopicViewHolder(View itemView) {
             super(itemView);
+            MyApplication.getApplicationComponent().inject(this);
             ButterKnife.bind(this, itemView);
         }
 
@@ -84,12 +97,23 @@ public class TopicViewModel extends BaseViewModel{
         public void bindViewHolder(TopicViewModel topicViewModel) {
             tvTitle.setText(topicViewModel.getTitle());
             tvCommentsCount.setText(topicViewModel.getCommentsCount());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mFragmentManager.addFragment((BaseActivity) view.getContext(),
+                            TopicCommentsFragment.newInstance(new Place(String.valueOf(topicViewModel.getGroupid()), String.valueOf(topicViewModel.getId()))),
+                            R.id.main_wrapper);
+                }
+            });
+
         }
 
         @Override
         public void unbindViewHolder() {
             tvTitle.setText(null);
             tvCommentsCount.setText(null);
+
         }
     }
 }

@@ -24,6 +24,7 @@ import io.realm.Sort;
 
 @InjectViewState
 public class BoardPresenter extends BaseFeedPresenter<BaseFeedView>{
+
     @Inject
     BoardApi mBoardApi;
 
@@ -37,27 +38,29 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView>{
                 ApiConstants.MY_GROUP_ID, count, offset
         ).toMap())
                 .flatMap(baseItemResponseFull ->
-                Observable.fromIterable(baseItemResponseFull.response.getItems()))
-                .doOnNext(topic -> topic.setGroupId(ApiConstants.MY_GROUP_ID))
+                        Observable.fromIterable(baseItemResponseFull.response.getItems()))
+                .doOnNext(topic -> topic.setGroupid(ApiConstants.MY_GROUP_ID))
                 .doOnNext(this::saveToDb)
                 .map(TopicViewModel::new);
     }
 
     @Override
     public Observable<BaseViewModel> onCreateRestoreDataObservable() {
-        return Observable.fromCallable(getListFromRealmCallable())
+        return Observable.fromCallable(getListFromrealmCallable())
                 .flatMap(Observable::fromIterable)
                 .map(TopicViewModel::new);
     }
 
-    public Callable<List<Topic>> getListFromRealmCallable() {
+    public Callable<List<Topic>> getListFromrealmCallable() {
         return () -> {
             String[] sortFields = {Member.ID};
             Sort[] sortOrder = {Sort.DESCENDING};
+
             Realm realm = Realm.getDefaultInstance();
             RealmResults<Topic> results = realm.where(Topic.class)
                     .equalTo("groupId", ApiConstants.MY_GROUP_ID)
                     .findAllSorted(sortFields, sortOrder);
+
             return realm.copyFromRealm(results);
         };
     }

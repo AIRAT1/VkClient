@@ -26,9 +26,7 @@ import io.realm.Realm;
 
 @InjectViewState
 public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView> {
-
     private int id;
-
     @Inject
     WallApi mWallApi;
 
@@ -55,11 +53,11 @@ public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView> {
 
                     list.add(new OpenedPostHeaderViewModel(wallItem));
 
-                    list.addAll(VkListHelper.getAttachmentVhItems(wallItem.getAttachments()));
+                    list.addAll(VkListHelper.getAttachmentVkItems(wallItem.getAttachments()));
                     if (wallItem.haveSharedRepost()) {
 
                         forwardedList.add(new OpenedPostRepostHeaderViewModel(wallItem.getSharedRepost()));
-                        forwardedList.addAll(VkListHelper.getAttachmentVhItems(wallItem.getSharedRepost().getAttachments()));
+                        forwardedList.addAll(VkListHelper.getAttachmentVkItems(wallItem.getSharedRepost().getAttachments()));
                     }
                     return Observable.fromIterable(list).concatWith(Observable.fromIterable(forwardedList));
                 });
@@ -83,11 +81,11 @@ public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView> {
 
                     list.add(new OpenedPostHeaderViewModel(wallItem));
 
-                    list.addAll(VkListHelper.getAttachmentVhItems(wallItem.getAttachments()));
+                    list.addAll(VkListHelper.getAttachmentVkItems(wallItem.getAttachments()));
                     if (wallItem.haveSharedRepost()) {
 
                         forwardedList.add(new OpenedPostRepostHeaderViewModel(wallItem.getSharedRepost()));
-                        forwardedList.addAll(VkListHelper.getAttachmentVhItems(wallItem.getSharedRepost().getAttachments()));
+                        forwardedList.addAll(VkListHelper.getAttachmentVkItems(wallItem.getSharedRepost().getAttachments()));
                     }
                     return Observable.fromIterable(list).concatWith(Observable.fromIterable(forwardedList));
                 });
