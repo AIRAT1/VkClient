@@ -7,8 +7,8 @@ import de.android.ayrathairullin.vkclient.model.WallItem;
 import de.android.ayrathairullin.vkclient.model.view.counter.CommentCounterViewModel;
 import de.android.ayrathairullin.vkclient.model.view.counter.LikeCounterViewModel;
 import de.android.ayrathairullin.vkclient.model.view.counter.RepostCounterViewModel;
-import de.android.ayrathairullin.vkclient.ui.holder.BaseViewHolder;
-import de.android.ayrathairullin.vkclient.ui.holder.NewsItemFooterHolder;
+import de.android.ayrathairullin.vkclient.ui.view.holder.BaseViewHolder;
+import de.android.ayrathairullin.vkclient.ui.view.holder.NewsItemFooterHolder;
 
 public class NewsItemFooterViewModel extends BaseViewModel{
     private int mId;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.android.ayrathairullin.vkclient.model.view.BaseViewModel;
-import de.android.ayrathairullin.vkclient.ui.holder.BaseViewHolder;
+import de.android.ayrathairullin.vkclient.ui.view.holder.BaseViewHolder;
 
 public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewModel>> {
 

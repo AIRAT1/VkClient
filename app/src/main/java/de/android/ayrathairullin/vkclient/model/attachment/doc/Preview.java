@@ -4,7 +4,7 @@ package de.android.ayrathairullin.vkclient.model.attachment.doc;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import de.android.ayrathairullin.vkclient.model.attachment.Video;
+import de.android.ayrathairullin.vkclient.model.attachment.video.Video;
 import io.realm.RealmObject;
 
 public class Preview extends RealmObject{

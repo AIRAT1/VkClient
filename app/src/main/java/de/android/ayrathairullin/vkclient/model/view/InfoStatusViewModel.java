@@ -8,7 +8,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.model.Group;
-import de.android.ayrathairullin.vkclient.ui.holder.BaseViewHolder;
+import de.android.ayrathairullin.vkclient.ui.view.holder.BaseViewHolder;
 
 public class InfoStatusViewModel extends BaseViewModel{
     private String mStatus;

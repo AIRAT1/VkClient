@@ -1,4 +1,4 @@
-package de.android.ayrathairullin.vkclient.ui.holder;
+package de.android.ayrathairullin.vkclient.ui.view.holder;
 
 
 import android.support.v7.widget.RecyclerView;

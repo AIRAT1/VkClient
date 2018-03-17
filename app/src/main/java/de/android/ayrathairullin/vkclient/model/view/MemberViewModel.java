@@ -11,7 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.model.Member;
-import de.android.ayrathairullin.vkclient.ui.holder.BaseViewHolder;
+import de.android.ayrathairullin.vkclient.ui.view.holder.BaseViewHolder;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MemberViewModel extends BaseViewModel{

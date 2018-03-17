@@ -1,9 +1,10 @@
-package de.android.ayrathairullin.vkclient.model.attachment;
+package de.android.ayrathairullin.vkclient.model.attachment.video;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.vk.sdk.api.model.VKAttachments;
 
+import de.android.ayrathairullin.vkclient.model.attachment.Attachment;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -53,7 +54,13 @@ public class Video extends RealmObject implements Attachment {
     @SerializedName("can_add")
     @Expose
     private int canAdd;
+    @SerializedName("files")
+    @Expose
+    private File files;
 
+    public File getFiles() {
+        return files;
+    }
 
     public int getId() {
         return id;

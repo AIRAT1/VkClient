@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import de.android.ayrathairullin.vkclient.model.attachment.Video;
+import de.android.ayrathairullin.vkclient.model.attachment.video.Video;
 
 public class VideoResponse {
     public int count;

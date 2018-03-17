@@ -4,8 +4,8 @@ package de.android.ayrathairullin.vkclient.model.view;
 import android.view.View;
 
 import de.android.ayrathairullin.vkclient.model.WallItem;
-import de.android.ayrathairullin.vkclient.ui.holder.BaseViewHolder;
-import de.android.ayrathairullin.vkclient.ui.holder.NewsItemBodyHolder;
+import de.android.ayrathairullin.vkclient.ui.view.holder.BaseViewHolder;
+import de.android.ayrathairullin.vkclient.ui.view.holder.NewsItemBodyHolder;
 
 public class NewsItemBodyViewModel extends BaseViewModel {
     private int mId;

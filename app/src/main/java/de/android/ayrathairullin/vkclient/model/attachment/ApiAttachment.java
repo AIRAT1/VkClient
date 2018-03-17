@@ -8,6 +8,7 @@ import com.vk.sdk.api.model.VKAttachments;
 import java.util.NoSuchElementException;
 
 import de.android.ayrathairullin.vkclient.model.attachment.doc.Doc;
+import de.android.ayrathairullin.vkclient.model.attachment.video.Video;
 import io.realm.RealmObject;
 
 public class ApiAttachment extends RealmObject{
