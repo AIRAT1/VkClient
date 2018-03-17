@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import de.android.ayrathairullin.vkclient.model.CommentItem;
 import de.android.ayrathairullin.vkclient.model.Owner;
 import de.android.ayrathairullin.vkclient.model.WallItem;
 import de.android.ayrathairullin.vkclient.model.attachment.ApiAttachment;
@@ -85,5 +86,25 @@ public class VkListHelper {
             }
         }
         return attachmentVhItems;
+    }
+
+    public static List<CommentItem> getCommentsList(ItemWithSendersResponse<CommentItem> response) {
+        return getCommentsList(response, false);
+    }
+
+    public static List<CommentItem> getCommentsList(ItemWithSendersResponse<CommentItem> response, boolean isFromTopic) {
+        List<CommentItem> commentItems = response.items;
+
+        for (CommentItem commentItem : commentItems) {
+            Owner sender = response.getSender(commentItem.getFromId());
+            commentItem.setSenderName(sender.getFullName());
+            commentItem.setSenderPhoto(sender.getPhoto());
+
+            commentItem.setIsFromTopic(isFromTopic);
+
+            commentItem.setAttachmentsString(Utils
+                    .convertAttachmentsToFontIcons(commentItem.getAttachments()));
+        }
+        return commentItems;
     }
 }
