@@ -1,7 +1,7 @@
 package de.android.ayrathairullin.vkclient.model.view.counter;
 
 
-import de.android.ayrathairullin.vkclient.model.Likes;
+import de.android.ayrathairullin.vkclient.model.countable.Likes;
 
 public class LikeCounterViewModel extends CounterViewModel{
     private Likes mLikes;

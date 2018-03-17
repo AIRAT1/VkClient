@@ -10,4 +10,6 @@
     <color name="colorDivider">#1F000000</color>
 
     <color name="colorDefaultWhite">#F5F5F5</color>
+    
+    <color name="colorIcon2">#A9AEB1</color>
 </resources>

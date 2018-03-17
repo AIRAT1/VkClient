@@ -14,6 +14,8 @@ import de.android.ayrathairullin.vkclient.MyApplication;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.common.manager.MyFragmentManager;
 import de.android.ayrathairullin.vkclient.model.view.attachment.ImageAttachmentViewModel;
+import de.android.ayrathairullin.vkclient.ui.activity.BaseActivity;
+import de.android.ayrathairullin.vkclient.ui.fragment.ImageFragment;
 import de.android.ayrathairullin.vkclient.ui.view.holder.BaseViewHolder;
 
 public class ImageAttachmentHolder extends BaseViewHolder<ImageAttachmentViewModel>{
@@ -31,6 +33,10 @@ public class ImageAttachmentHolder extends BaseViewHolder<ImageAttachmentViewMod
 
     @Override
     public void bindViewHolder(ImageAttachmentViewModel imageAttachmentViewModel) {
+        if (imageAttachmentViewModel.needClick) {
+            itemView.setOnClickListener(view -> mFragmentManager.addFragment((BaseActivity) itemView.getContext(),
+                    ImageFragment.newInstance(imageAttachmentViewModel.getPhotoUrl()), R.id.main_wrapper));
+        }
         Glide.with(itemView.getContext()).load(imageAttachmentViewModel.getPhotoUrl()).into(image);
     }
 

@@ -1,7 +1,7 @@
 package de.android.ayrathairullin.vkclient.model.view.counter;
 
 
-import de.android.ayrathairullin.vkclient.model.Comments;
+import de.android.ayrathairullin.vkclient.model.countable.Comments;
 
 public class CommentCounterViewModel extends CounterViewModel {
     private Comments mComments;

@@ -5,6 +5,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import de.android.ayrathairullin.vkclient.model.attachment.ApiAttachment;
+import de.android.ayrathairullin.vkclient.model.countable.Comments;
+import de.android.ayrathairullin.vkclient.model.countable.Likes;
+import de.android.ayrathairullin.vkclient.model.countable.Reposts;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

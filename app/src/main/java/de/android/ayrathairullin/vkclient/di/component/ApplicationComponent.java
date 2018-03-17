@@ -13,12 +13,15 @@ import de.android.ayrathairullin.vkclient.mvp.presenter.InfoPresenter;
 import de.android.ayrathairullin.vkclient.mvp.presenter.MainPresenter;
 import de.android.ayrathairullin.vkclient.mvp.presenter.MembersPresenter;
 import de.android.ayrathairullin.vkclient.mvp.presenter.NewsFeedPresenter;
+import de.android.ayrathairullin.vkclient.mvp.presenter.OpenedPostPresenter;
 import de.android.ayrathairullin.vkclient.ui.activity.BaseActivity;
 import de.android.ayrathairullin.vkclient.ui.activity.MainActivity;
 import de.android.ayrathairullin.vkclient.ui.fragment.NewsFeedFragment;
+import de.android.ayrathairullin.vkclient.ui.fragment.OpenedPostFragment;
 import de.android.ayrathairullin.vkclient.ui.view.holder.NewsItemBodyHolder;
 import de.android.ayrathairullin.vkclient.ui.view.holder.NewsItemFooterHolder;
 import de.android.ayrathairullin.vkclient.ui.view.holder.attachment.ImageAttachmentHolder;
+import de.android.ayrathairullin.vkclient.ui.view.holder.attachment.VideoAttachmentHolder;
 
 @Singleton
 @Component(modules = {ApplicationModule.class, ManagerModule.class, RestModule.class})
@@ -28,16 +31,19 @@ public interface ApplicationComponent {
     void inject(MainActivity activity);
     // fragments
     void inject(NewsFeedFragment fragment);
+    void inject(OpenedPostFragment fragment);
     // holders
     void inject(NewsItemBodyHolder holder);
     void inject(NewsItemFooterHolder holder);
     void inject(ImageAttachmentHolder holder);
+    void inject(VideoAttachmentHolder holder);
     // presenters
     void inject(NewsFeedPresenter presenter);
     void inject(MainPresenter presenter);
     void inject(MembersPresenter presenter);
     void inject(BoardPresenter presenter);
     void inject(InfoPresenter presenter);
+    void inject(OpenedPostPresenter presenter);
     // managers
     void inject(NetworkManager manager);
 }

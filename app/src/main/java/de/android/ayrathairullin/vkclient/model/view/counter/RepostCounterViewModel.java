@@ -1,7 +1,7 @@
 package de.android.ayrathairullin.vkclient.model.view.counter;
 
 
-import de.android.ayrathairullin.vkclient.model.Reposts;
+import de.android.ayrathairullin.vkclient.model.countable.Reposts;
 
 public class RepostCounterViewModel extends CounterViewModel {
     private Reposts mReposts;
