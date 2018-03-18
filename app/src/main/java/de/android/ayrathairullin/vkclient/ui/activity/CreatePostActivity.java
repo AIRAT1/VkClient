@@ -23,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import droidninja.filepicker.FilePickerConst;
 import de.android.ayrathairullin.vkclient.R;
 import de.android.ayrathairullin.vkclient.common.BaseAdapter;
 import de.android.ayrathairullin.vkclient.consts.ApiConstants;
@@ -34,7 +35,6 @@ import de.android.ayrathairullin.vkclient.model.view.CreatePostTextViewModel;
 import de.android.ayrathairullin.vkclient.model.view.attachment.DocAttachmentViewModel;
 import de.android.ayrathairullin.vkclient.model.view.attachment.ImageAttachmentViewModel;
 import de.android.ayrathairullin.vkclient.ui.dialog.AddAttachmentDialogFragment;
-import droidninja.filepicker.FilePickerConst;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
@@ -42,6 +42,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
 
 public class CreatePostActivity extends BaseActivity {
 
