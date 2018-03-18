@@ -35,4 +35,8 @@ public abstract class BaseFragment extends MvpAppCompatFragment{
     public BaseActivity getBaseActivity() {
         return (BaseActivity)getActivity();
     }
+
+    public boolean needFab() {
+        return false;
+    }
 }
